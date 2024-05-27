@@ -1,6 +1,8 @@
+import Button from "../common/Button";
+
 const Decrement = (props) => {
   const { onDecrement } = props;
-  return <button onClick={onDecrement}>-</button>;
+  return <Button title="+" onClick={onDecrement} />;
 };
 
 export default Decrement;

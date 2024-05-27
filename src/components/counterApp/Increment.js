@@ -1,7 +1,9 @@
+import Button from "../common/Button";
+
 const Increment = (props) => {
   const { onIcrement } = props;
 
-  return <button onClick={onIcrement}>+</button>;
+  return <Button title="-" onClick={onIcrement} />;
 };
 
 export default Increment;

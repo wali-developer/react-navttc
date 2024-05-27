@@ -21,7 +21,7 @@ const style = {
 
 const Counter = () => {
   const [count, setCount] = useState(1);
-  console.log(count);
+  const [show, setShow] = useState(false);
 
   const decrementCount = () => {
     setCount((prev) => (prev > 1 ? prev - 1 : prev));
@@ -39,6 +39,24 @@ const Counter = () => {
           }}
         />
       </div>
+      <button
+        onMouseEnter={() => setShow(true)}
+        onMouseLeave={() => setShow(false)}
+      >
+        Check events
+      </button>
+
+      {show && (
+        <div
+          style={{
+            width: 500,
+            height: 500,
+            borderRadius: 50,
+            background: "lightgray",
+            marginTop: 50,
+          }}
+        ></div>
+      )}
     </div>
   );
 };
