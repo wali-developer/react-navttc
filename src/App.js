@@ -1,8 +1,16 @@
+import "./styles/style.css";
+
 import React from "react";
-import Counter from "./components/counterApp/Counter";
+import TodoApp from "./components/todo/TodoApp";
 
 const App = () => {
-  return <Counter />;
+  return (
+    <>
+      {/* <Counter /> */}
+      {/* <Lists /> */}
+      <TodoApp />
+    </>
+  );
 };
 
 export default App;
