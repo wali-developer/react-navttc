@@ -14,15 +14,24 @@ const styles = {
 
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
+  const [selectedTodo, setSelectedTodo] = useState("");
   return (
     <div style={styles}>
       <TodoHeader />
       <AddTodo
+        selectedTodo={selectedTodo}
+        todos={todos}
+        setTodos={setTodos}
         onAdd={(item) => {
-          setTodos((prevArr) => [...prevArr, item]);
+          setTodos(() => [...todos, item]);
+          setSelectedTodo("");
         }}
       />
-      <TodoItems todos={todos} />
+      <TodoItems
+        todos={todos}
+        setTodos={setTodos}
+        EditTodo={(todo) => setSelectedTodo(todo)}
+      />
     </div>
   );
 };

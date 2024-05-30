@@ -1,7 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const AddTodo = ({ onAdd }) => {
+const AddTodo = ({ onAdd, selectedTodo, setTodos, todos }) => {
   const [todo, setTodo] = useState("");
+
+  useEffect(() => {
+    setTodo(selectedTodo);
+  }, [selectedTodo]);
+
+  const updateTodo = () => {
+    const arr = todos?.map((item) => {
+      if (item === selectedTodo) {
+        return todo;
+      }
+    });
+    setTodos(arr);
+  };
+
   return (
     <form
       onSubmit={(e) => {
@@ -16,7 +30,13 @@ const AddTodo = ({ onAdd }) => {
         value={todo}
         onChange={(event) => setTodo(event.target.value)}
       />
-      <button type="submit">Add</button>
+      {selectedTodo ? (
+        <button onClick={updateTodo} type="button">
+          {"Update"}
+        </button>
+      ) : (
+        <button type="submit">{"Add"}</button>
+      )}
     </form>
   );
 };
