@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
 
-const AddTodo = ({ onAdd, selectedTodo, setTodos, todos }) => {
+const AddTodo = ({ onAdd, selectedTodo, setTodos, clearSelected, todos }) => {
   const [todo, setTodo] = useState("");
 
   useEffect(() => {
-    setTodo(selectedTodo);
+    setTodo(selectedTodo?.name);
   }, [selectedTodo]);
 
   const updateTodo = () => {
     const arr = todos?.map((item) => {
-      if (item === selectedTodo) {
-        return todo;
+      if (item?.id === selectedTodo?.id) {
+        return {
+          ...item,
+          name: todo,
+        };
+      } else {
+        return item;
       }
     });
     setTodos(arr);
+    clearSelected();
+    setTodo("");
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onAdd(todo);
-        setTodo("");
-      }}
-    >
+    <div>
       <input
         type="text"
         placeholder="Todo.."
@@ -31,13 +32,32 @@ const AddTodo = ({ onAdd, selectedTodo, setTodos, todos }) => {
         onChange={(event) => setTodo(event.target.value)}
       />
       {selectedTodo ? (
-        <button onClick={updateTodo} type="button">
+        <button
+          onClick={() => {
+            updateTodo();
+          }}
+          type="button"
+        >
           {"Update"}
         </button>
       ) : (
-        <button type="submit">{"Add"}</button>
+        <button
+          onClick={() => {
+            if (todo?.length === 0) {
+              alert("Please provide a value");
+            } else {
+              onAdd({
+                id: Math.floor(Math.random() * 200 + 5),
+                name: todo,
+              });
+              setTodo("");
+            }
+          }}
+        >
+          {"Add"}
+        </button>
       )}
-    </form>
+    </div>
   );
 };
 export default AddTodo;

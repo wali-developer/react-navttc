@@ -10,7 +10,7 @@ export const TodoItem = ({ item, onClick, EditTodo }) => {
           gap: 20,
         }}
       >
-        <span>{item}</span>
+        <span>{item?.name}</span>
         <div>
           <button onClick={EditTodo}>Edit</button>
           <button onClick={onClick}>Delete</button>

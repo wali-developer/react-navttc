@@ -15,6 +15,7 @@ const styles = {
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
   const [selectedTodo, setSelectedTodo] = useState("");
+
   return (
     <div style={styles}>
       <TodoHeader />
@@ -22,8 +23,12 @@ const TodoApp = () => {
         selectedTodo={selectedTodo}
         todos={todos}
         setTodos={setTodos}
+        clearSelected={() => {
+          setSelectedTodo("");
+        }}
         onAdd={(item) => {
           setTodos(() => [...todos, item]);
+          localStorage.setItem("todos", JSON.stringify(todos));
           setSelectedTodo("");
         }}
       />

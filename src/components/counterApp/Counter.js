@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Decrement from "./Decrement";
 import Increment from "./Increment";
+import { NavLink } from "react-router-dom";
 
 const style = {
   display: "flex",
@@ -57,6 +58,11 @@ const Counter = () => {
           }}
         ></div>
       )}
+      <NavLink to="/todo">
+        <button className="px-5 h-[44px] rounded-lg border border-black/50 block">
+          Go to Todo app
+        </button>
+      </NavLink>
     </div>
   );
 };

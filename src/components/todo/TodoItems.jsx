@@ -10,7 +10,9 @@ const TodoItems = ({ todos, setTodos, EditTodo }) => {
             key={index}
             item={todo}
             onClick={() => {
-              const filteredTodos = todos?.filter((item) => item !== todo);
+              const filteredTodos = todos?.filter(
+                (item) => item?.id !== todo?.id
+              );
               setTodos(filteredTodos);
             }}
             EditTodo={() => EditTodo(todo)}
