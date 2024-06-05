@@ -10,6 +10,8 @@ import RootLayout from "./components/layout";
 import ErrorPage from "./components/ErrorPage";
 import Users, { usersLoader } from "./components/users/Users";
 import UserDetails, { userDetailsLoader } from "./components/users/UserDetails";
+import Posts, { postsLoader } from "./components/posts/Posts";
+import { PostDetails, postDetailsLoader } from "./components/posts/PostDetails";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -31,14 +33,14 @@ const App = () => {
           element: <Lists />,
         },
         {
-          path: "/users",
-          element: <Users />,
-          loader: usersLoader,
+          path: "/posts",
+          element: <Posts />,
+          loader: postsLoader,
         },
         {
-          path: "/users/:userId",
-          element: <UserDetails />,
-          loader: userDetailsLoader,
+          path: "/posts/:postId",
+          element: <PostDetails />,
+          loader: postDetailsLoader,
         },
       ],
     },
