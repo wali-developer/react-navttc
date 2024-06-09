@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Decrement from "./Decrement";
 import Increment from "./Increment";
 import { NavLink } from "react-router-dom";
+import { CounterContext } from "../../contexts/CounterContext";
 
 const style = {
   display: "flex",
@@ -21,48 +22,16 @@ const style = {
 };
 
 const Counter = () => {
-  const [count, setCount] = useState(1);
-  const [show, setShow] = useState(false);
-
-  const decrementCount = () => {
-    setCount((prev) => (prev > 1 ? prev - 1 : prev));
-  };
+  const { state } = useContext(CounterContext);
 
   return (
     <div>
       <h1>Counter App</h1>
       <div style={style}>
-        <Decrement onDecrement={decrementCount} />
-        <span>{count}</span>
-        <Increment
-          onIcrement={() => {
-            setCount((prev) => prev + 1);
-          }}
-        />
+        <Decrement />
+        <span>{state.count}</span>
+        <Increment />
       </div>
-      <button
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
-      >
-        Check events
-      </button>
-
-      {show && (
-        <div
-          style={{
-            width: 500,
-            height: 500,
-            borderRadius: 50,
-            background: "lightgray",
-            marginTop: 50,
-          }}
-        ></div>
-      )}
-      <NavLink to="/todo">
-        <button className="px-5 h-[44px] rounded-lg border border-black/50 block">
-          Go to Todo app
-        </button>
-      </NavLink>
     </div>
   );
 };

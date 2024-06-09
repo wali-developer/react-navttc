@@ -10,6 +10,8 @@ import RootLayout from "./components/layout";
 import ErrorPage from "./components/ErrorPage";
 import Users, { usersLoader } from "./components/users/Users";
 import UserDetails, { userDetailsLoader } from "./components/users/UserDetails";
+import UseRefExample from "./components/useRef";
+import { ContextProvider } from "./contexts/CounterContext";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -40,6 +42,10 @@ const App = () => {
           element: <UserDetails />,
           loader: userDetailsLoader,
         },
+        {
+          path: "/useRef",
+          element: <UseRefExample />,
+        },
       ],
     },
     {
@@ -48,7 +54,11 @@ const App = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <ContextProvider>
+      <RouterProvider router={router} />;
+    </ContextProvider>
+  );
 };
 
 export default App;
